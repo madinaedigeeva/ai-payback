@@ -181,17 +181,24 @@ mapping or question, backed by a source. Open an issue naming the `src/ai_paybac
 and the source you would put in its place.
 
 ```bash
-python -m venv .venv && .venv/bin/pip install -e ".[dev]"
-.venv/bin/python -m pytest && .venv/bin/ruff check . && .venv/bin/ai-payback validate
+python -m venv venv && venv/bin/pip install -e ".[dev]"
+venv/bin/python -m pytest && venv/bin/ruff check . && venv/bin/ai-payback validate
 ```
 
 > **macOS troubleshooting.** If an editable install produces
-> `ModuleNotFoundError: No module named 'ai_payback'` even though the install
-> reported success, check the `hidden` flag: `ls -lO .venv/lib/python*/site-packages/`.
+> `ModuleNotFoundError: No module named 'ai_payback'` even though `pip` reported
+> success, check the file flags:
+> `ls -lO venv/lib/python*/site-packages/*.pth`.
+>
 > Since Python 3.13, `site.addpackage()` **silently skips** any `.pth` file
-> carrying the macOS `UF_HIDDEN` flag, so the editable path hook never reaches
-> `sys.path` and the failure gives no clue as to its cause. Fix with
-> `chflags -R nohidden .venv`. This cannot occur on Linux, so CI is unaffected.
+> carrying the macOS `UF_HIDDEN` flag. The editable path hook never reaches
+> `sys.path`, and nothing in the error names the cause. macOS sets that flag on
+> some dot-prefixed directories, so a virtualenv at `.venv` can acquire it —
+> and re-acquire it after `chflags -R nohidden .venv` clears it.
+>
+> The durable fix is to keep the environment out of a dot-directory: use
+> `venv/` as above, or somewhere outside the repository entirely. Linux has no
+> `st_flags`, so CI cannot hit this.
 
 Contributions of synthetic or simulated assessment data will be declined. A
 benchmark built on invented data would be worse than no benchmark.

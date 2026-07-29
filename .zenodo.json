@@ -1,0 +1,33 @@
+{
+  "title": "ai-payback: an open instrument for assessing whether enterprise AI adoption pays back",
+  "description": "<p>An open-source instrument that produces the ROI analysis document AI adoption maturity frameworks require organisations to hold but do not define how to produce.</p><p>Scores 78 diagnostic questions across 26 barriers in three layers (algorithms; technology and data; people and processes) weighted 10/20/70; builds a total cost of ownership across categories routinely omitted from AI budgets; and computes simple payback, or refuses to and says why.</p><p>Design commitments enforced as tests: an unanswered question is never scored as zero; an unpriced cost is never treated as zero; no number is invented; payback is refused rather than fabricated; every coefficient carries a provenance tier and a verification date; and a benefit supplied without a named conversion path is reported with an explicit caveat, because at national scale 95.7% of AI-using firms record no AI-driven employment change at all.</p><p>Not affiliated with NIST, CMU SEI, Accenture, MIT Project NANDA or BCG. Every mapping to their published work is this project's own reading of public documents.</p>",
+  "creators": [
+    {
+      "name": "Yedigeyeva, Madina",
+      "affiliation": "Independent researcher"
+    }
+  ],
+  "keywords": [
+    "artificial intelligence",
+    "AI adoption",
+    "return on investment",
+    "total cost of ownership",
+    "technology management",
+    "productivity paradox",
+    "enterprise software",
+    "assessment instrument"
+  ],
+  "license": "Apache-2.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "10.36871/ek.up.p.r.2026.05.11.027",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    }
+  ],
+  "notes": "The framework operationalises Yedigeyeva, M. K. (2026), 'Problems of implementing artificial intelligence in enterprises. Reasons for low return on investment and management solutions', Ekonomika i upravlenie: problemy, resheniya 11(5), pp. 263-280. Implementation was AI-assisted; this is recorded in the repository's commit history."
+}
