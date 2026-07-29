@@ -129,15 +129,20 @@ def test_the_three_version_strings_agree() -> None:
 
     `__version__`, the distribution version and the framework version are set in
     three different files and were briefly inconsistent in 0.2.0 development.
-    """
-    from pathlib import Path
 
-    import tomllib
+    Read with a regex rather than `tomllib`, which is 3.11+ while this package
+    supports 3.10. Only one field is needed, so a parser is not warranted.
+    """
+    import re
+    from pathlib import Path
 
     import ai_payback
 
     pyproject = Path(__file__).resolve().parent.parent / "pyproject.toml"
-    with pyproject.open("rb") as handle:
-        distribution_version = tomllib.load(handle)["project"]["version"]
+    match = re.search(
+        r'^version = "([^"]+)"', pyproject.read_text(encoding="utf-8"), re.MULTILINE
+    )
+    assert match, "no version line found in pyproject.toml"
+    distribution_version = match.group(1)
 
     assert ai_payback.__version__ == distribution_version == load_spec().version
