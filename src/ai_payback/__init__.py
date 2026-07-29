@@ -34,7 +34,7 @@ from .scoring import ScoringError, score, score_barrier, score_layer
 from .spec import Spec, SpecError, load_spec
 from .tco import CostError, available_presets, payback, total_cost_of_ownership
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Assessment",

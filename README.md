@@ -180,6 +180,19 @@ The most useful contribution is disagreement with a specific coefficient,
 mapping or question, backed by a source. Open an issue naming the `src/ai_payback/spec/` line
 and the source you would put in its place.
 
+```bash
+python -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/python -m pytest && .venv/bin/ruff check . && .venv/bin/ai-payback validate
+```
+
+> **macOS troubleshooting.** If an editable install produces
+> `ModuleNotFoundError: No module named 'ai_payback'` even though the install
+> reported success, check the `hidden` flag: `ls -lO .venv/lib/python*/site-packages/`.
+> Since Python 3.13, `site.addpackage()` **silently skips** any `.pth` file
+> carrying the macOS `UF_HIDDEN` flag, so the editable path hook never reaches
+> `sys.path` and the failure gives no clue as to its cause. Fix with
+> `chflags -R nohidden .venv`. This cannot occur on Linux, so CI is unaffected.
+
 Contributions of synthetic or simulated assessment data will be declined. A
 benchmark built on invented data would be worse than no benchmark.
 

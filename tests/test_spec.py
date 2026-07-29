@@ -122,3 +122,22 @@ def test_illustrative_presets_declare_their_tier(spec: Spec) -> None:
 def test_missing_spec_directory_is_an_error(tmp_path) -> None:
     with pytest.raises(SpecError):
         Spec(tmp_path)
+
+
+def test_the_three_version_strings_agree() -> None:
+    """A result must be traceable to one version, not three that drifted apart.
+
+    `__version__`, the distribution version and the framework version are set in
+    three different files and were briefly inconsistent in 0.2.0 development.
+    """
+    from pathlib import Path
+
+    import tomllib
+
+    import ai_payback
+
+    pyproject = Path(__file__).resolve().parent.parent / "pyproject.toml"
+    with pyproject.open("rb") as handle:
+        distribution_version = tomllib.load(handle)["project"]["version"]
+
+    assert ai_payback.__version__ == distribution_version == load_spec().version
