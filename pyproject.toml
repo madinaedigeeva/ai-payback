@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-payback"
+version = "0.1.0"
+description = "An open instrument for assessing whether enterprise AI adoption pays back, and for producing the ROI analysis that AI adoption maturity frameworks require but do not define."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Madina Yedigeyeva" }]
+keywords = [
+    "artificial-intelligence",
+    "ai-adoption",
+    "return-on-investment",
+    "total-cost-of-ownership",
+    "technology-management",
+    "assessment",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+ai-payback = "ai_payback.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/madinaedigeeva/ai-payback"
+Source = "https://github.com/madinaedigeeva/ai-payback"
+Issues = "https://github.com/madinaedigeeva/ai-payback/issues"
+Methodology = "https://github.com/madinaedigeeva/ai-payback/blob/main/docs/METHODOLOGY.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_payback"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"spec" = "ai_payback/spec"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "spec", "tests", "docs", "README.md", "LICENSE", "CITATION.cff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+# En and em dashes are deliberate in the report prose: an en dash is the correct
+# character for a numeric range, and the reports are read by people.
+allowed-confusables = ["–", "—"]

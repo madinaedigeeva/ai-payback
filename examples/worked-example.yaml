@@ -1,0 +1,99 @@
+# Worked example — a fictional mid-market manufacturer.
+#
+# INVENTED DATA. Every figure here is made up to demonstrate the tool's
+# behaviour. It is not a real organisation, not a case study, and not a
+# benchmark. Do not cite any number in this file.
+#
+# The pattern it illustrates is the common one described in the literature:
+# solid technology, weak organisation. The technology and data layer scores
+# reasonably; people and process does not; the weighted result is poor,
+# because that is the finding the weighting encodes.
+
+organisation: "Northwind Components (fictional)"
+currency: USD
+elapsed_months: 9
+net_monthly_benefit: 42000
+
+responses:
+  # --- Algorithms: competent, and largely irrelevant to the outcome ---
+  AL-01-Q1: 3
+  AL-01-Q2: 2
+  AL-01-Q3: 1
+  AL-02-Q1: 2
+  AL-02-Q2: 1
+  AL-02-Q3: 2
+  AL-03-Q1: 2
+  AL-03-Q2: 3
+  AL-03-Q3: 3
+
+  # --- Technology and data: the part that got the budget ---
+  TD-01-Q1: 3
+  TD-01-Q2: 3
+  TD-01-Q3: 1
+  TD-02-Q1: 3
+  TD-02-Q2: 3
+  TD-02-Q3: 1
+  TD-03-Q1: 2
+  TD-03-Q2: 2
+  TD-03-Q3: 1
+  TD-04-Q1: 1
+  TD-04-Q2: 0
+  TD-04-Q3: 0
+  TD-05-Q1: 3
+  TD-05-Q2: 2
+  TD-05-Q3: 1
+
+  # --- People and processes: the 70% that decides it ---
+  PP-01-Q1: 1
+  PP-01-Q2: 0
+  PP-01-Q3: 0
+  PP-02-Q1: 1
+  PP-02-Q2: 0
+  PP-02-Q3: 0
+  PP-03-Q1: 1
+  PP-03-Q2: 0
+  PP-03-Q3: 1
+  PP-04-Q1: 2
+  PP-04-Q2: 1
+  PP-04-Q3: 0
+  PP-05-Q1: 1
+  PP-05-Q2: 0
+  PP-05-Q3: 1
+  PP-06-Q1: 1
+  PP-06-Q2: 2
+  PP-06-Q3: 1
+  PP-07-Q1: 1
+  PP-07-Q2: 0
+  PP-07-Q3: 0
+  PP-08-Q1: 1
+  PP-08-Q2: 1
+  PP-08-Q3: 0
+  PP-09-Q1: 2
+  PP-09-Q2: 1
+  PP-09-Q3: 1
+  PP-10-Q1: 2
+  PP-10-Q2: 0
+  PP-10-Q3: 1
+  PP-11-Q1: 1
+  PP-11-Q2: 0
+  PP-11-Q3: 0
+  PP-12-Q1: 1
+  PP-12-Q2: 0
+  PP-12-Q3: 0
+
+# The budget as it was approved: tooling and the people building it.
+direct_costs:
+  licences: 340000
+  inference: 185000
+  internal_labour: 620000
+  external_services: 240000
+  hardware: 0
+
+# Left deliberately empty, which is the realistic case. The report will name
+# each one as UNPRICED rather than treat it as zero, and will state that the
+# total is a floor rather than an estimate.
+omitted_costs: {}
+
+notes: >
+  Fictional. Created to demonstrate output format and the floor-versus-estimate
+  distinction. Not a case study and not a benchmark.

@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: "AI Payback Assessment"
+message: "If you use this instrument, please cite both the software and the paper it implements."
+type: software
+authors:
+  - family-names: "Yedigeyeva"
+    given-names: "Madina"
+    alias: "Madina K. Yedigeyeva"
+repository-code: "https://github.com/madinaedigeeva/ai-payback"
+abstract: >-
+  An open instrument for assessing whether an enterprise AI adoption programme
+  is positioned to pay back. It scores 60 diagnostic questions across 20
+  barriers in three layers weighted after BCG's 10-20-70 allocation, builds a
+  total cost of ownership across the categories most often omitted from AI
+  budgets, and renders the ROI analysis artifact that AI adoption maturity
+  frameworks require but do not define. Every coefficient carries a provenance
+  tier; claims that could not be traced to a reachable primary source are
+  published as excluded rather than used.
+keywords:
+  - artificial intelligence
+  - AI adoption
+  - return on investment
+  - total cost of ownership
+  - technology management
+  - assessment instrument
+license: Apache-2.0
+version: 0.1.0
+date-released: "2026-07-29"
+references:
+  - type: article
+    title: >-
+      Problems of implementing artificial intelligence in enterprises. Reasons
+      for low return on investment and management solutions
+    authors:
+      - family-names: "Yedigeyeva"
+        given-names: "Madina"
+    journal: "Ekonomika i upravlenie: problemy, resheniya"
+    volume: 11
+    issue: 5
+    start: 263
+    end: 280
+    year: 2026
+    doi: "10.36871/ek.up.p.r.2026.05.11.027"

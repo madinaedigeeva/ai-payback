@@ -1,0 +1,176 @@
+# Total cost of ownership model
+#
+# The point of this file: an AI programme budget written as "licences plus API
+# calls" is not a budget. This model names the cost categories that published
+# work reports as routinely omitted, so that omitting one becomes a visible,
+# deliberate choice rather than an accident.
+#
+# WHAT IS ASSERTED AND WHAT IS NOT
+#
+#   The CATEGORY STRUCTURE is asserted. It is supported by Yedigeyeva (2026),
+#   corroborated by the capability areas of SEI-AAMM-1.0, and it is the part a
+#   user should trust.
+#
+#   The PERCENTAGE RANGES are NOT asserted as defaults. Yedigeyeva (2026)
+#   reports them, but the paper attributes them upstream only to unnamed
+#   consulting analysts, and no reachable primary document was found. They ship
+#   as an OPTIONAL, LABELLED PRESET that is OFF by default. Turning it on
+#   produces an illustrative estimate, never a claim about a real organisation.
+#
+# Direct costs are always supplied by the user. This model never invents a
+# number the user did not provide.
+
+schema_version: "0.1"
+model_version: "0.1.0"
+implements: "YEDIGEYEVA-2026"
+
+# ------------------------------------------------------------- direct costs
+#
+# Supplied by the user, in the user's own currency. No defaults, ever.
+
+direct_cost_items:
+  - id: licences
+    name: "Software licences and subscriptions"
+    note: "Per-seat and platform fees. The number most organisations mean when they say 'the AI budget'."
+  - id: inference
+    name: "Inference, API and compute"
+    note: "Scales with usage, not with headcount."
+  - id: internal_labour
+    name: "Internal labour, fully loaded"
+    note: "Engineering, data, product and business time charged at loaded cost, not salary."
+  - id: external_services
+    name: "External services"
+    note: "Implementation partners, contractors, consultancies."
+  - id: hardware
+    name: "Hardware and reserved capacity"
+    note: "Only where separately procured."
+
+# -------------------------------------------------------- omitted-cost categories
+#
+# The categories organisations report discovering after the budget was set.
+# `preset_share_range` is illustrative only and disabled unless explicitly
+# enabled. `sei_capability_areas` shows where the maturity model expects the
+# corresponding practice to exist.
+
+omitted_cost_categories:
+
+  - id: integration_customisation
+    name: "Integration and customisation"
+    description: >
+      Connectors, access control, reconciling data across systems, and wiring
+      the solution into records systems that were not designed for it.
+      Deployment windows commonly move from weeks to months here.
+    preset_share_range: [0.20, 0.30]
+    preset_source: "YEDIGEYEVA-2026"
+    preset_tier: "published, upstream unverified"
+    barriers: [TD-02, TD-03]
+    sei_capability_areas: ["4.9.3 Legacy Integration", "4.9.1 AI Architecting"]
+
+  - id: data_preparation
+    name: "Data preparation and quality assurance"
+    description: >
+      Collecting, cleaning, labelling and maintaining the inputs so that the
+      system has correct context. Reported as the omission behind the largest
+      share of failures.
+    preset_share_range: [0.15, 0.20]
+    preset_source: "YEDIGEYEVA-2026"
+    preset_tier: "published, upstream unverified"
+    barriers: [TD-01]
+    sei_capability_areas: ["4.8.1 Data Lifecycle Management", "4.8.2 Data Quality Assurance"]
+
+  - id: training_change_management
+    name: "Training and change management"
+    description: >
+      Workflow redesign, retraining, handling resistance, manager coaching and
+      user support. The category BCG's 10-20-70 says should dominate the effort
+      and that budgets most often omit.
+    preset_share_range: [0.10, 0.15]
+    preset_source: "YEDIGEYEVA-2026"
+    preset_tier: "published, upstream unverified"
+    barriers: [PP-02, PP-03]
+    sei_capability_areas: ["4.5.1 AI-Literate Workforce Development", "4.5.2 Organizational Culture Evolution"]
+
+  - id: infrastructure_scaling
+    name: "Infrastructure scaling and data transfer"
+    description: >
+      Egress, cross-region transfer, vector search and the capacity headroom a
+      successful rollout consumes. Grows with adoption, which means it grows
+      exactly when the programme is working.
+    preset_share_range: [0.15, 0.25]
+    preset_source: "YEDIGEYEVA-2026"
+    preset_tier: "published, upstream unverified"
+    barriers: [TD-04]
+    sei_capability_areas: ["4.11.1 Technology Infrastructure"]
+
+  - id: compliance_security_legal
+    name: "Compliance, security and legal"
+    description: >
+      Audit trails, explainability, records retention, regulatory review and
+      contract work. Small as a share, and the category most likely to stop a
+      launch outright when missing.
+    preset_share_range: [0.05, 0.10]
+    preset_source: "YEDIGEYEVA-2026"
+    preset_tier: "published, upstream unverified"
+    barriers: [PP-09]
+    sei_capability_areas: ["4.7.1 Risk Management", "4.7.2 Policy and Compliance", "4.7.3 Responsible AI"]
+
+  - id: ongoing_maintenance
+    name: "Ongoing maintenance and evaluation"
+    description: >
+      Monitoring, drift detection, periodic re-evaluation, retraining and the
+      qualified human oversight without which earlier gains decay. Yedigeyeva
+      names this category but gives it no share; none is invented here.
+    preset_share_range: null
+    preset_source: "YEDIGEYEVA-2026"
+    preset_tier: "category asserted, no share reported"
+    barriers: [AL-03, PP-11]
+    sei_capability_areas: ["4.10.1 AI Model Management", "4.10.3 Monitoring", "4.9.2 Test and Evaluation"]
+
+# ------------------------------------------------------------------- presets
+
+presets:
+  none:
+    enabled_by_default: true
+    description: >
+      No share assumptions. Omitted categories the user did not cost are
+      reported as UNPRICED and named in the output. Total cost is the sum of
+      what the user actually supplied, and the report states plainly that it is
+      a floor rather than an estimate.
+
+  yedigeyeva_2026_illustrative:
+    enabled_by_default: false
+    description: >
+      Applies the share ranges reported in Yedigeyeva (2026) to produce a low
+      and a high illustrative figure for the categories the user left unpriced.
+      Every output carries the label "illustrative" and names the preset.
+      Not for use in a business case without substituting the organisation's
+      own figures.
+    caveat: >
+      The paper's upstream attribution for these ranges is to unnamed consulting
+      analysts and could not be verified against a primary document. The
+      accompanying claim that total cost is underestimated by 40-60% is recorded
+      in sources.yaml under `unverified` and is NOT implemented anywhere.
+
+# ------------------------------------------------------------------ payback
+
+payback:
+  method: "simple"
+  formula: "payback_months = total_cost_of_ownership / net_monthly_benefit"
+  requires_user_input: ["net_monthly_benefit"]
+  refusals:
+    - condition: "net_monthly_benefit is not supplied"
+      behaviour: >
+        Return no payback figure. The cost side alone cannot produce one, and
+        substituting a benchmark benefit would be inventing the answer.
+    - condition: "net_monthly_benefit <= 0"
+      behaviour: >
+        Return no payback figure and state that the programme does not pay back
+        under the supplied figures.
+    - condition: "elapsed_months < j_curve.default_horizon_months"
+      behaviour: >
+        Return the figure, and attach the J-curve caveat from framework.yaml.
+        Do not characterise the programme as underperforming.
+  note: >
+    Deliberately the simplest possible method. Discounting, option value and
+    scenario modelling are out of scope for v0.1: an organisation that cannot
+    yet name its omitted costs is not helped by a discount rate.

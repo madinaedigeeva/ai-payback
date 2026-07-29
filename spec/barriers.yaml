@@ -1,0 +1,497 @@
+# AI Payback Assessment barrier taxonomy
+#
+# Twenty barriers to realising return from enterprise AI adoption, organised by
+# the three layers of framework.yaml.
+#
+# Each barrier carries:
+#   layer          which of the three layers it belongs to
+#   evidence       the source ids (see sources.yaml) that support it existing
+#   sei            capability areas of SEI-AAMM-1.0 the barrier bears on
+#   nist           AI RMF 1.0 subcategories that touch the same ground, where any do
+#   questions      diagnostic items, answered on the 0-4 scale in framework.yaml
+#
+# A barrier with no NIST mapping is not an omission. Most of these barriers are
+# economic and organisational, and the AI RMF is a risk framework - the absence
+# is the gap AI Payback Assessment exists to address, and it is recorded honestly as `nist: []`.
+
+schema_version: "0.1"
+taxonomy_version: "0.1.0"
+implements: "YEDIGEYEVA-2026"
+
+barriers:
+
+# ============================================================ PEOPLE & PROCESS
+# The 70%. Yedigeyeva (2026) after BCG: this layer decides the outcome.
+
+  - id: PP-01
+    name: "Proliferation of pilots"
+    layer: PEOPLE_PROCESS
+    description: >
+      Many concurrent, unconnected AI experiments across departments. Budget and
+      leadership attention spread thin; no single initiative is funded to the
+      point where it changes how the organisation works.
+    evidence: [YEDIGEYEVA-2026, MIT-NANDA-2025]
+    evidence_note: >
+      NANDA reports high pilot volume with lagging scale-up. Yedigeyeva reports
+      concurrent use-case counts for leaders versus laggards; those specific
+      numbers are in the unverified pool and are deliberately not encoded.
+    sei: ["4.4.1 AI Strategy Development", "4.6.1 Experimentation"]
+    nist: []
+    questions:
+      - id: PP-01-Q1
+        text: >
+          Is there a single written list of every AI initiative running in the
+          unit, with a named owner and a decision date for each?
+      - id: PP-01-Q2
+        text: >
+          Are initiatives ranked against each other for funding, so that starting
+          a new one visibly costs an existing one?
+      - id: PP-01-Q3
+        text: >
+          Has any initiative been deliberately stopped in the last twelve months
+          on the basis of that ranking?
+
+  - id: PP-02
+    name: "Change management failure"
+    layer: PEOPLE_PROCESS
+    description: >
+      Staff resist the system, openly or quietly, most often from fear of
+      redundancy. Training and enablement are underfunded relative to licences.
+    evidence: [YEDIGEYEVA-2026, BCG-10-20-70]
+    sei: ["4.5.1 AI-Literate Workforce Development", "4.5.2 Organizational Culture Evolution"]
+    nist: []
+    questions:
+      - id: PP-02-Q1
+        text: >
+          Is there a budget line for training and enablement that is separate
+          from the tooling budget and reported separately?
+      - id: PP-02-Q2
+        text: >
+          Has the organisation stated in writing what happens to the people whose
+          tasks the system takes over?
+      - id: PP-02-Q3
+        text: >
+          Is refusal or non-use measured, and does anyone act on the measurement?
+
+  - id: PP-03
+    name: "Bolt-on instead of workflow redesign"
+    layer: PEOPLE_PROCESS
+    description: >
+      AI is added on top of an existing process rather than the process being
+      rebuilt around what AI makes possible. Yedigeyeva identifies this as the
+      critical error separating the majority from the minority that succeeds.
+    evidence: [YEDIGEYEVA-2026, SEI-AAMM-1.0]
+    sei: ["4.6.2 Business Workflow Innovation", "4.6.3 Human-in-the-Lead Automation"]
+    nist: []
+    questions:
+      - id: PP-03-Q1
+        text: >
+          For the main use case, was the target workflow redesigned before the
+          tool was selected?
+      - id: PP-03-Q2
+        text: >
+          Were any process steps removed as a result, rather than only made
+          faster?
+      - id: PP-03-Q3
+        text: >
+          Was a non-AI process fix considered and explicitly rejected first?
+
+  - id: PP-04
+    name: "Process debt and automation of chaos"
+    layer: PEOPLE_PROCESS
+    description: >
+      A process that was already broken is automated. The system then produces
+      the same errors faster and at larger scale.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.6.2 Business Workflow Innovation", "4.6.4 Measurement and Analysis"]
+    nist: ["MEASURE 2.6"]
+    questions:
+      - id: PP-04-Q1
+        text: >
+          Is the current process documented end to end, including its exceptions,
+          before automation?
+      - id: PP-04-Q2
+        text: >
+          Is the error rate of the existing manual process known as a number?
+      - id: PP-04-Q3
+        text: >
+          Is there a defined stop condition that halts the automation when its
+          error rate exceeds the manual baseline?
+
+  - id: PP-05
+    name: "Tribal knowledge inaccessible"
+    layer: PEOPLE_PROCESS
+    description: >
+      The undocumented rules, exceptions and relationships that make the work
+      correct exist only in experienced people's heads. The system cannot reach
+      them and so makes decisions that are defensible on paper and wrong in life.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.8.1 Data Lifecycle Management", "4.6.3 Human-in-the-Lead Automation"]
+    nist: ["MEASURE 4.1", "MEASURE 4.2"]
+    questions:
+      - id: PP-05-Q1
+        text: >
+          Have the informal rules and exceptions of the target process been
+          written down and reviewed by the people who actually apply them?
+      - id: PP-05-Q2
+        text: >
+          Is there a route by which a practitioner's correction to a system
+          output reaches the system's knowledge base rather than only the output?
+      - id: PP-05-Q3
+        text: >
+          Is the volume of human rework on system outputs measured?
+
+  - id: PP-06
+    name: "Proof-of-concept trap"
+    layer: PEOPLE_PROCESS
+    description: >
+      The programme stalls between a working demonstration and production use.
+      Criteria for crossing that line were never agreed, so nothing crosses it.
+    evidence: [YEDIGEYEVA-2026, MIT-NANDA-2025]
+    sei: ["4.6.1 Experimentation", "4.11.3 Deployment at Scale"]
+    nist: ["MEASURE 1.1"]
+    questions:
+      - id: PP-06-Q1
+        text: >
+          Were the production-entry criteria written down before the pilot began?
+      - id: PP-06-Q2
+        text: >
+          Is there a named person with authority to move a pilot into production?
+      - id: PP-06-Q3
+        text: >
+          Has anything actually crossed into production and stayed there for two
+          quarters?
+
+  - id: PP-07
+    name: "Efficiency trap"
+    layer: PEOPLE_PROCESS
+    description: >
+      AI is used only to remove cost and headcount rather than to do work that
+      was previously impossible. The organisation gets smaller rather than more
+      capable, and the measurable gain is capped at the wage bill it removed.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.4.1 AI Strategy Development", "4.6.2 Business Workflow Innovation"]
+    nist: []
+    questions:
+      - id: PP-07-Q1
+        text: >
+          Does the business case contain at least one revenue or capability
+          outcome, not only a cost reduction?
+      - id: PP-07-Q2
+        text: >
+          Has the programme created any service or product that did not exist
+          before it?
+      - id: PP-07-Q3
+        text: >
+          Are the freed hours tracked to what they were redeployed onto?
+
+  - id: PP-08
+    name: "Front-office investment bias"
+    layer: PEOPLE_PROCESS
+    description: >
+      Budget flows to visible customer-facing functions where attribution is
+      hardest, while back-office work - finance, logistics, legal, procurement -
+      where the effect is measurable and quick, is left alone.
+    evidence: [MIT-NANDA-2025, YEDIGEYEVA-2026]
+    evidence_quote: >
+      "Investment bias: Budgets favor visible, top-line functions over high-ROI
+      back office" - MIT NANDA, GenAI Divide, 2025.
+    sei: ["4.4.1 AI Strategy Development", "4.6.2 Business Workflow Innovation"]
+    nist: []
+    questions:
+      - id: PP-08-Q1
+        text: >
+          What share of the AI budget went to functions where the effect can be
+          read directly from an existing operational or financial system?
+      - id: PP-08-Q2
+        text: >
+          For the largest initiative, was attribution of the effect agreed with
+          finance before it started?
+      - id: PP-08-Q3
+        text: >
+          Has any back-office process been assessed for AI at the same level of
+          seriousness as the customer-facing ones?
+
+  - id: PP-09
+    name: "Governance gaps"
+    layer: PEOPLE_PROCESS
+    description: >
+      Tools are deployed without written rules of use, decision rights over
+      autonomous action, or guardrails. Nobody can say who is accountable for a
+      given machine decision.
+    evidence: [YEDIGEYEVA-2026, SEI-AAMM-1.0]
+    sei: ["4.7.1 Risk Management", "4.7.2 Policy and Compliance", "4.7.3 Responsible AI"]
+    nist: ["GOVERN 1.1", "GOVERN 1.2", "GOVERN 2.1", "GOVERN 3.2", "MANAGE 2.1"]
+    questions:
+      - id: PP-09-Q1
+        text: >
+          Is there a written policy stating which decisions the system may take
+          without a human, and who owns each one?
+      - id: PP-09-Q2
+        text: >
+          Is there an inventory of AI systems in use, including ones bought by
+          individual departments?
+      - id: PP-09-Q3
+        text: >
+          Has anyone been assigned accountability for outcomes, as distinct from
+          responsibility for the tool?
+
+  - id: PP-10
+    name: "Build bias and not-invented-here"
+    layer: PEOPLE_PROCESS
+    description: >
+      The organisation builds in-house what it could buy, usually justified by
+      the claim that its data or domain is too special. NANDA's interview sample
+      shows internal builds reaching deployment at roughly half the rate.
+    evidence: [MIT-NANDA-2025, YEDIGEYEVA-2026]
+    evidence_note: >
+      NANDA's own limitation applies: ~67% versus ~33% is self-reported, from an
+      interview sample, not a random sample. AI Payback Assessment treats it as direction only.
+    sei: ["4.4.2 AI Partnership Development", "4.9.1 AI Architecting"]
+    nist: ["MAP 4.1", "GOVERN 6.1"]
+    questions:
+      - id: PP-10-Q1
+        text: >
+          For the main system, was a buy option formally evaluated against build
+          with costed alternatives?
+      - id: PP-10-Q2
+        text: >
+          Is AI development part of what the organisation sells, or purely
+          internal capability?
+      - id: PP-10-Q3
+        text: >
+          Does the in-house team have a named maintenance owner and a funded
+          maintenance budget beyond the launch?
+
+  - id: PP-11
+    name: "Productivity gap"
+    layer: PEOPLE_PROCESS
+    description: >
+      The time saved that the vendor promised is offset by time spent steering
+      the system, writing prompts, checking outputs and repairing errors. Net
+      time saved is not measured, so the offset stays invisible.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.6.4 Measurement and Analysis"]
+    nist: ["MEASURE 2.3", "MEASURE 2.13"]
+    questions:
+      - id: PP-11-Q1
+        text: >
+          Is time saved measured from systems rather than from self-report?
+      - id: PP-11-Q2
+        text: >
+          Is the time spent supervising, correcting and re-running the system
+          counted against the saving?
+      - id: PP-11-Q3
+        text: >
+          Is there a baseline from before the system was introduced?
+
+  - id: PP-12
+    name: "Benefit siloing"
+    layer: PEOPLE_PROCESS
+    description: >
+      Gains stay locked with a few capable individuals. Personal productivity
+      rises and nothing changes at the level of the value chain, so the effect
+      never reaches the accounts.
+    evidence: [YEDIGEYEVA-2026, MIT-NANDA-2025]
+    sei: ["4.5.2 Organizational Culture Evolution", "4.11.3 Deployment at Scale"]
+    nist: []
+    questions:
+      - id: PP-12-Q1
+        text: >
+          Is usage measured across the whole population that should be using the
+          system, not only among volunteers?
+      - id: PP-12-Q2
+        text: >
+          Has any working practice discovered by an advanced user been turned
+          into a standard for everyone?
+      - id: PP-12-Q3
+        text: >
+          Does any end-to-end process cycle time show a change, as opposed to
+          individual task times?
+
+# =============================================================== TECH AND DATA
+# The 20%.
+
+  - id: TD-01
+    name: "Source data quality"
+    layer: TECH_DATA
+    description: >
+      Inputs are incomplete, inconsistent, unlabelled or contradictory across
+      systems. Yedigeyeva reports data preparation as the category whose neglect
+      accounts for the largest share of failures.
+    evidence: [YEDIGEYEVA-2026, SEI-AAMM-1.0]
+    sei: ["4.8.1 Data Lifecycle Management", "4.8.2 Data Quality Assurance"]
+    nist: ["MAP 2.3", "MEASURE 2.8"]
+    questions:
+      - id: TD-01-Q1
+        text: >
+          Is data quality for the specific inputs the system uses measured and
+          reported, as distinct from general data governance existing?
+      - id: TD-01-Q2
+        text: >
+          Is there an owner for each input dataset who can be asked to fix it?
+      - id: TD-01-Q3
+        text: >
+          Was data remediation costed into the programme budget before it began?
+
+  - id: TD-02
+    name: "Legacy integration"
+    layer: TECH_DATA
+    description: >
+      Connecting current AI systems to older CRM, ERP and record systems takes
+      far longer than planned, and deployment windows slip from weeks to months.
+    evidence: [YEDIGEYEVA-2026, SEI-AAMM-1.0]
+    sei: ["4.9.3 Legacy Integration", "4.9.1 AI Architecting"]
+    nist: ["MAP 2.1"]
+    questions:
+      - id: TD-02-Q1
+        text: >
+          Is every system the solution must read from or write to identified,
+          with its interface and owner?
+      - id: TD-02-Q2
+        text: >
+          Has an integration actually been completed end to end in a non-demo
+          environment?
+      - id: TD-02-Q3
+        text: >
+          Is the integration effort estimated from a completed one rather than
+          from the vendor's estimate?
+
+  - id: TD-03
+    name: "Architectural complexity"
+    layer: TECH_DATA
+    description: >
+      The solution depends on many moving parts across teams and vendors. Each
+      dependency adds failure modes and a coordination cost that no single
+      budget line owns.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.9.1 AI Architecting", "4.11.2 Supply Chain Management"]
+    nist: ["MAP 2.1", "MANAGE 3.1"]
+    questions:
+      - id: TD-03-Q1
+        text: >
+          Is there a current architecture diagram that names every external
+          dependency and its owner?
+      - id: TD-03-Q2
+        text: >
+          Is there a defined behaviour for the system when a dependency is
+          unavailable?
+      - id: TD-03-Q3
+        text: >
+          Is the number of dependencies tracked over time?
+
+  - id: TD-04
+    name: "Infrastructure and transfer cost escalation"
+    layer: TECH_DATA
+    description: >
+      Inference, vector search, egress and cross-region transfer costs scale with
+      use rather than with headcount, so a successful rollout raises the bill in
+      a way a licence-based forecast does not anticipate.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.11.1 Technology Infrastructure", "4.10.3 Monitoring"]
+    nist: []
+    questions:
+      - id: TD-04-Q1
+        text: >
+          Is cost per transaction or per user known, rather than only total spend?
+      - id: TD-04-Q2
+        text: >
+          Is there an alert or budget cap before overspend rather than after?
+      - id: TD-04-Q3
+        text: >
+          Has the cost been modelled at ten times current volume?
+
+  - id: TD-05
+    name: "No retrieval grounding"
+    layer: TECH_DATA
+    description: >
+      The system answers from general model knowledge rather than from the
+      organisation's own records, so it is confidently wrong on the specifics
+      that matter and cannot show where an answer came from.
+    evidence: [YEDIGEYEVA-2026]
+    sei: ["4.9.4 Transparency and Explainability", "4.9.1 AI Architecting"]
+    nist: ["MEASURE 2.9", "MEASURE 2.5"]
+    questions:
+      - id: TD-05-Q1
+        text: >
+          Does the system cite the internal source for its factual claims?
+      - id: TD-05-Q2
+        text: >
+          Can a user follow a citation to the underlying record?
+      - id: TD-05-Q3
+        text: >
+          Is groundedness evaluated against a held-out set of real internal
+          questions?
+
+# =================================================================== ALGORITHMS
+# The 10%. Small by design - overweighting this layer is itself a failure mode.
+
+  - id: AL-01
+    name: "Model and vendor churn"
+    layer: ALGORITHMS
+    description: >
+      Disproportionate leadership attention goes to choosing between model
+      providers and re-running comparisons, which is the 10% of the work, while
+      the 70% goes unattended.
+    evidence: [YEDIGEYEVA-2026, BCG-10-20-70]
+    sei: ["4.10.1 AI Model Management", "4.4.2 AI Partnership Development"]
+    nist: ["MEASURE 2.1"]
+    questions:
+      - id: AL-01-Q1
+        text: >
+          Is model selection a documented decision with criteria, or a recurring
+          debate?
+      - id: AL-01-Q2
+        text: >
+          Can the solution change model provider without redesign?
+      - id: AL-01-Q3
+        text: >
+          Is leadership time spent on model choice proportionate to time spent on
+          workflow and adoption?
+
+  - id: AL-02
+    name: "No learning loop"
+    layer: ALGORITHMS
+    description: >
+      The system does not retain feedback, adapt to context or improve with use.
+      NANDA identifies this as the central mechanism behind stalled pilots -
+      the tool is the same on day two hundred as on day one.
+    evidence: [MIT-NANDA-2025]
+    evidence_quote: >
+      "Most GenAI systems do not retain feedback, adapt to context, or improve
+      over time." - MIT NANDA, GenAI Divide, 2025.
+    sei: ["4.10.1 AI Model Management", "4.6.4 Measurement and Analysis"]
+    nist: ["MEASURE 2.13", "MANAGE 4.1"]
+    questions:
+      - id: AL-02-Q1
+        text: >
+          Is user feedback captured in a structured form rather than as free
+          comment?
+      - id: AL-02-Q2
+        text: >
+          Has captured feedback changed system behaviour at least once, traceably?
+      - id: AL-02-Q3
+        text: >
+          Is there a measure of output quality that is tracked over time?
+
+  - id: AL-03
+    name: "Drift and retraining discipline"
+    layer: ALGORITHMS
+    description: >
+      Behaviour degrades as the world, the data or the underlying model changes.
+      Without monitoring and a retraining or re-evaluation cadence, degradation
+      is discovered by users rather than by the organisation.
+    evidence: [YEDIGEYEVA-2026, SEI-AAMM-1.0]
+    sei: ["4.10.1 AI Model Management", "4.10.3 Monitoring", "4.9.2 Test and Evaluation"]
+    nist: ["MEASURE 2.4", "MEASURE 3.1", "MANAGE 4.1"]
+    questions:
+      - id: AL-03-Q1
+        text: >
+          Is production output quality monitored automatically rather than by
+          complaint?
+      - id: AL-03-Q2
+        text: >
+          Is there a defined cadence for re-evaluation, with a budget?
+      - id: AL-03-Q3
+        text: >
+          Is there a rollback path to a previous known-good configuration?

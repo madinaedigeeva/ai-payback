@@ -1,0 +1,186 @@
+# AI Payback Assessment source registry
+#
+# Every coefficient, weight and claim used anywhere in this specification must
+# reference an id defined here. Nothing in AI Payback Assessment is asserted without provenance.
+#
+# provenance tiers
+#   primary          the organisation that produced the finding, published by it,
+#                    reachable and verified against the document itself
+#   published        a peer-reviewed publication that reports the finding
+#   analyst          a named commercial analyst or consultancy, published
+#   unverified       the claim circulates in the literature but no reachable
+#                    primary document was found. NEVER used as a default value.
+#
+# verified_on records the date the URL was fetched and the quoted text confirmed
+# inside the document, not merely that the URL returned 200.
+
+schema_version: "0.1"
+registry_updated: "2026-07-29"
+
+sources:
+
+  # ---------------------------------------------------------------- frameworks
+
+  NIST-AI-100-1:
+    tier: primary
+    title: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
+    identifier: "NIST AI 100-1"
+    publisher: "National Institute of Standards and Technology, U.S. Department of Commerce"
+    date: "2023-01"
+    url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+    verified_on: "2026-07-29"
+    verified_facts:
+      - "48 pages; 4 functions (GOVERN, MAP, MEASURE, MANAGE); 72 subcategories, of which 22 are in MEASURE."
+      - "Full-text term counts in the document: 'return on investment' 0, 'ROI' 0, 'payback' 0, 'profitab*' 0, 'financial return' 0, 'economic value' 0, 'adoption' 0."
+      - "The single occurrence of 'cost-benefit' reads: 'Emerging knowledge and methods to better inform harm/cost-benefit tradeoffs will continue to be developed and debated by businesses, governments, academia, and civil society.'"
+    note: >
+      The AI RMF measures risk and trustworthiness. It does not measure economic
+      return, and it says explicitly that cost-benefit methods remain to be
+      developed. AI Payback Assessment addresses that stated open area; it does not extend,
+      amend or claim conformance with the AI RMF.
+
+  SEI-AAMM-1.0:
+    tier: primary
+    title: "The AI Adoption Maturity Model v1.0"
+    author: "Software Engineering Institute and Accenture"
+    publisher: "Carnegie Mellon University Software Engineering Institute"
+    date: "2026"
+    document_marking: "DM26-0590"
+    url: "https://www.sei.cmu.edu/library/ai-adoption-maturity-model/"
+    pdf_url: "https://www.sei.cmu.edu/documents/6534/The_AI_Adoption_Maturity_Model.pdf"
+    verified_on: "2026-07-29"
+    verified_facts:
+      - "124 pages. 8 dimensions: Organizational Strategy, Workforce and Culture, Workflow Re-Engineering, Risk and Governance, Data, Engineering, Operations, Technology Ecosystem. 25 capability areas. 5 maturity levels: Exploratory AI, Implemented AI, Aligned AI, Scaled AI, Future Ready AI."
+      - "Term counts: 'ROI' 26, 'return on investment' 0 outside the acronym expansion, 'payback' 0, 'financial' 0."
+      - "Lists 'ROI analysis' among Example Artifacts for Level 3 (Aligned AI) in the Workflow Re-Engineering and Operations dimensions."
+      - "Monitoring capability area, Practice 3: 'Collect cost and revenue data along with model outputs to support ROI analysis.'"
+      - "Business Workflow Innovation capability area, Practice 4: 'Prioritize candidate business processes and workflows for AI adoption according to estimated improvements and ROI against business goals.'"
+      - "'the January 2026 SEI Accenture survey found that only 31% of organizations rely on business value and ROI prioritization when assessing and developing their AI adoption roadmap'"
+      - "AI Strategy Development capability area includes: 'Define and monitor the costs and implications of failed adoption.'"
+      - "The model cites [Challapally 2025] GenAI Divide: State of AI in Business 2025, MIT NANDA."
+    note: >
+      The model requires an ROI analysis as evidence of Level 3 maturity and
+      does not define a method for producing one. AI Payback Assessment produces that artifact.
+      AI Payback Assessment is not affiliated with, endorsed by or reviewed by the SEI, CMU or
+      Accenture. The mapping in this specification is AI Payback Assessment's own reading of the
+      published model.
+
+  # ------------------------------------------------------------------ evidence
+
+  MIT-NANDA-2025:
+    tier: primary
+    title: "The GenAI Divide: State of AI in Business 2025"
+    author: "Aditya Challapally, Chris Pease, Ramesh Raskar, Pradyumna Chari"
+    publisher: "MIT Project NANDA"
+    date: "2025-07"
+    url: "https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf"
+    verified_on: "2026-07-29"
+    verified_facts:
+      - "'Despite $30-40 billion in enterprise investment into GenAI, this report uncovers a surprising result in that 95% of organizations are getting zero return.'"
+      - "'Just 5% of integrated AI pilots are extracting millions in value, while the vast majority remain stuck with no measurable P&L impact.'"
+      - "'external partnerships with learning-capable, customized tools reached deployment ~67% of the time, compared to ~33% for internally built tools'"
+      - "'Strategic partnerships are twice as likely to succeed as internal builds.'"
+      - "'Investment bias: Budgets favor visible, top-line functions over high-ROI back office'"
+      - "Method: 150 interviews with leaders, a survey of 350 employees, analysis of 300 public AI deployments."
+    stated_limitations:
+      - "'While these figures reflect self-reported outcomes and may not account for all confounding variables, the magnitude of difference was consistent across interviewees.'"
+      - "The 66/33 deployment split is drawn from the interview sample, not a random sample of enterprises."
+    note: >
+      AI Payback Assessment carries these limitations forward. The build-vs-buy coefficient is
+      treated as a directional signal, never as a probability.
+
+  BCG-10-20-70:
+    tier: primary
+    title: "The 10-20-70 rule for AI transformation"
+    publisher: "Boston Consulting Group"
+    date: "2024-07-03"
+    url: "https://www.bcg.com/assets/2024/executive-perspectives-ceos-guide-to-maximizing-value-from-ai-3july.pdf"
+    corroborating_urls:
+      - "https://www.bcg.com/capabilities/artificial-intelligence"
+      - "https://www.bcg.com/publications/2026/scaling-ai-requires-new-processes-not-just-new-tools"
+      - "https://www.bcg.com/publications/2025/closing-the-ai-impact-gap"
+    verified_on: "2026-07-29"
+    verified_facts:
+      - "'The 10-20-70 Rule: Focus 10% of your AI efforts on algorithms, 20% on the underlying technology and data, and 70% on people and processes'"
+      - "'BCG has established a guiding principle of 10/20/70 for resource allocation.'"
+      - "Survey basis given as 2023-24 BCG Build for the Future C-level (Gen)AI Survey(s), N = 735."
+    naming_note: >
+      BCG's own name for the principle is 10-20-70, ordered algorithms - technology
+      and data - people and processes. Yedigeyeva (2026) presents the identical
+      allocation as "the 70-20-10 rule", ordered largest share first. AI Payback Assessment uses
+      BCG's ordering to stay aligned with the source.
+    scope_note: >
+      BCG states this as an allocation of EFFORT. BCG does not state it as a set
+      of importance weights for scoring an assessment. Using it that way is
+      AI Payback Assessment's own modelling decision - see framework.yaml, weights.derivation.
+
+  # ------------------------------------------------------- the author's own work
+
+  YEDIGEYEVA-2026:
+    tier: published
+    title: >
+      Problems of implementing artificial intelligence in enterprises. Reasons
+      for low return on investment and management solutions
+    title_ru: >
+      Проблемы внедрения искусственного интеллекта на предприятиях. Причины
+      низкой окупаемости и управленческие решения
+    author: "Madina K. Yedigeyeva"
+    publication: "Ekonomika i upravlenie: problemy, resheniya"
+    volume: "11"
+    issue: "5 (170)"
+    pages: "263-280"
+    date: "2026-05"
+    doi: "10.36871/ek.up.p.r.2026.05.11.027"
+    url: "https://doi.org/10.36871/ek.up.p.r.2026.05.11.027"
+    language: "ru"
+    verified_on: "2026-07-29"
+    verified_facts:
+      - "Sole-authored. 18 pages, 45 references. DOI resolves, HTTP 200."
+      - "Contains the barrier taxonomy, the six-category hidden-cost model, the buy-versus-build finding and the five patterns of successful adopters that this specification implements."
+    note: >
+      This is the source specification AI Payback Assessment implements. Where this paper reports
+      a figure that traces upstream to a source AI Payback Assessment could not reach, the
+      coefficient is tagged tier "unverified" and is disabled by default.
+
+# --------------------------------------------------------------- unverified pool
+#
+# Present so that readers can see exactly what was excluded and why.
+# Never used as a default value anywhere in AI Payback Assessment.
+
+unverified:
+
+  HIDDEN-COST-SHARES:
+    reported_by: "YEDIGEYEVA-2026"
+    upstream_attribution: "consulting analysts, named in the paper only as 'DigitSense and others'"
+    claim: >
+      Hidden-cost shares of total AI programme cost: integration and
+      customisation 20-30%, data preparation and quality 15-20%, training and
+      change management 10-15%, infrastructure scaling and data transfer 15-25%,
+      compliance, security and legal 5-10%; total cost underestimated by 40-60%.
+    status: >
+      No reachable primary document was found for the percentage ranges. The
+      CATEGORY STRUCTURE is well supported and is used. The RANGES are shipped
+      as an optional, clearly labelled preset, off by default.
+
+  GARTNER-30PCT-ABANDONED:
+    reported_by: "YEDIGEYEVA-2026"
+    claim: "At least 30% of GenAI projects abandoned after proof of concept by end of 2025."
+    status: "Widely reported; primary Gartner press release not verified by AI Payback Assessment. Not used."
+
+  SP-GLOBAL-42PCT:
+    reported_by: "YEDIGEYEVA-2026"
+    claim: "Share of companies abandoning most AI initiatives rose from 17% in 2024 to 42% in 2025."
+    status: "Attributed to S&P Global Market Intelligence; primary document not verified by AI Payback Assessment. Not used."
+
+  IBM-COMPUTE-89PCT:
+    reported_by: "YEDIGEYEVA-2026"
+    claim: "Average baseline compute cost for consuming organisations rises 89% between 2023 and 2025."
+    status: "Attributed to IBM Institute for Business Value; primary document not verified by AI Payback Assessment. Not used."
+
+  BCG-USE-CASE-COUNTS:
+    reported_by: "YEDIGEYEVA-2026"
+    claim: "Laggards run 6.1 concurrent use cases on average, leaders 3.5; leaders' expected ROI is 2.1x higher."
+    status: >
+      Direction is corroborated by MIT-NANDA-2025 ('high pilot volume but lag in
+      scale-up'). The exact figures were not verified against a BCG document.
+      Used as a qualitative signal only; the numbers are not encoded.

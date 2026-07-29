@@ -1,0 +1,205 @@
+# AI Payback Assessment - framework definition
+#
+# An open instrument for assessing whether an enterprise AI adoption programme
+# is positioned to pay back, and for producing the kind of ROI analysis that
+# established AI adoption frameworks call for but do not themselves define.
+#
+# THIS IS NOT A PREDICTIVE MODEL. It does not forecast return. It scores the
+# organisational conditions that published research associates with failure to
+# realise return, estimates total cost of ownership under a declared and
+# user-visible cost model, and shows its reasoning at every step.
+# See docs/METHODOLOGY.md, section "What this is not".
+
+schema_version: "0.1"
+framework_version: "0.1.0"
+framework_updated: "2026-07-29"
+
+identity:
+  name: "AI Payback Assessment"
+  package: "ai-payback"
+  author: "Madina Yedigeyeva"
+  implements: "YEDIGEYEVA-2026"
+  license: "Apache-2.0"
+
+# ----------------------------------------------------- relationship to others
+#
+# Stated up front, because getting this wrong is the fastest way to lose a
+# reader who knows the field.
+
+positioning:
+  nist_ai_rmf: >
+    The NIST AI Risk Management Framework (AI RMF 1.0) manages risk and
+    trustworthiness. Economic return is outside its scope, and the framework
+    itself says of cost-benefit method that it "will continue to be developed
+    and debated". This project is a contribution in that stated open area. It
+    does not extend, amend, profile or claim conformance with the AI RMF.
+  sei_maturity_model: >
+    The SEI/Accenture AI Adoption Maturity Model measures software engineering
+    and organisational process capability. It leaves financial modelling out of
+    scope, and that is a reasonable boundary rather than an oversight: financial
+    modelling is an economic and management discipline, not a process capability.
+    This project does not claim to correct or complete their model.
+
+    What that model does do is require the output. It lists "ROI analysis" among
+    the example artifacts for Aligned AI (Level 3), and directs organisations to
+    "collect cost and revenue data along with model outputs to support ROI
+    analysis". It reports that only 31% of organisations use business value and
+    ROI to prioritise their AI roadmap.
+
+    This project is an operational economic companion to that requirement: an
+    open method for producing the analysis the maturity model asks an
+    organisation to have.
+  bcg: >
+    BCG's 10-20-70 is an allocation principle, not an instrument. This project
+    turns it into something an organisation can answer and score, which is a
+    step BCG does not take and does not endorse. See weights.derivation.
+
+# ---------------------------------------------------------------------- layers
+
+layers:
+  - id: ALGORITHMS
+    name: "Algorithms"
+    description: >
+      The models themselves - selection, fine-tuning, prompt engineering,
+      vendor choice, licence and API cost.
+    bcg_effort_share: 0.10
+
+  - id: TECH_DATA
+    name: "Technology and data"
+    description: >
+      The stack the models run on - data pipelines and quality, integration
+      layers, legacy systems, retrieval, security, monitoring, scaling.
+    bcg_effort_share: 0.20
+
+  - id: PEOPLE_PROCESS
+    name: "People and processes"
+    description: >
+      Change management, role and workflow redesign, training, governance,
+      incentives, decision rights, and the operating model around the system.
+    bcg_effort_share: 0.70
+
+# --------------------------------------------------------------------- weights
+
+weights:
+  ALGORITHMS: 0.10
+  TECH_DATA: 0.20
+  PEOPLE_PROCESS: 0.70
+
+  derivation: >
+    READ THIS BEFORE CITING THE WEIGHTS. BCG states 10-20-70 as an allocation of
+    EFFORT during an AI transformation. BCG does not state it as a set of
+    importance weights for scoring a readiness assessment. Treating the effort
+    allocation as an importance weighting is this project's own modelling step,
+    not a finding of BCG's, and it is the single most contestable choice in this
+    specification.
+
+    The reasoning: if 70% of the work that determines whether a transformation
+    sticks is people and process, then a weakness in people and process should
+    dominate an assessment of whether it will stick. That is an inference from
+    BCG's finding. It is stated here rather than buried, so a reader can reject
+    it and re-run with their own weights.
+
+    Every result carries the weight vector that produced it, so results computed
+    under different weights are never silently compared.
+
+  attribution: "Modelling decision of this project, informed by BCG-10-20-70"
+  configurable: true
+
+# -------------------------------------------------------------- response scale
+#
+# Five points, aligned to the SEI/Accenture maturity levels, so an organisation
+# that has run that assessment can answer this one consistently.
+
+response_scale:
+  - value: 0
+    label: "Absent"
+    sei_level_analogue: 1
+    description: "Not addressed at all, or addressed only ad hoc by individuals."
+  - value: 1
+    label: "Initial"
+    sei_level_analogue: 2
+    description: "Addressed in at least one place, inconsistently, without ownership."
+  - value: 2
+    label: "Defined"
+    sei_level_analogue: 3
+    description: "Documented, owned, and applied consistently in the unit assessed."
+  - value: 3
+    label: "Managed"
+    sei_level_analogue: 4
+    description: "Measured against objectives, reported upward, applied across sub-units."
+  - value: 4
+    label: "Optimised"
+    sei_level_analogue: 5
+    description: "Continuously improved, with evidence that the improvement holds."
+
+# ----------------------------------------------------------------- score bands
+#
+# Descriptive labels for a weighted mean. No band asserts a probability of any
+# financial outcome, and none should ever be quoted as one.
+
+readiness_bands:
+  - id: CRITICAL
+    range: [0.00, 1.00]
+    label: "Critical exposure"
+    meaning: >
+      The conditions most strongly associated with non-realisation of return in
+      the published evidence are largely unaddressed. Spending more on tooling
+      is unlikely to change the outcome.
+  - id: EXPOSED
+    range: [1.00, 2.00]
+    label: "Exposed"
+    meaning: >
+      Foundations exist in places but are not consistent or owned. Return is
+      plausible for narrow use cases and unlikely at programme scale.
+  - id: STRUCTURED
+    range: [2.00, 3.00]
+    label: "Structured"
+    meaning: >
+      The organisational conditions are defined and consistently applied. The
+      remaining question is whether the selected use cases are worth the money,
+      which the cost model addresses.
+  - id: COMPOUNDING
+    range: [3.00, 4.00]
+    label: "Compounding"
+    meaning: >
+      Conditions are measured and improving. The published evidence associates
+      this state with the minority of organisations that report realised return.
+
+# -------------------------------------------------------------- J-curve caveat
+
+j_curve:
+  applies: true
+  statement: >
+    Measured productivity and return commonly fall before they rise, because the
+    complementary intangible investment - redesigned processes, new roles, new
+    skills - is expensed immediately while its returns arrive later and are
+    recorded as ordinary output. A negative measured return early in a programme
+    is therefore not by itself evidence of failure, and a positive one early is
+    not by itself evidence of success.
+  implication: >
+    Elapsed programme months are reported alongside every result, and a
+    programme younger than the configured horizon is never characterised as
+    underperforming on cost data alone.
+  default_horizon_months: 18
+  source: "YEDIGEYEVA-2026"
+  upstream: >
+    Brynjolfsson, Rock and Syverson, "Artificial intelligence and the modern
+    productivity paradox", in The Economics of Artificial Intelligence: An
+    Agenda, University of Chicago Press, 2019, pp. 23-57
+
+# ----------------------------------------------------------------- disclaimers
+
+disclaimers:
+  not_affiliated: >
+    This is an independent open-source project. It is not affiliated with,
+    endorsed by, reviewed by or connected to NIST, the Carnegie Mellon
+    University Software Engineering Institute, Accenture, MIT, Project NANDA or
+    Boston Consulting Group. All mappings to their published frameworks are this
+    project's own reading of public documents.
+  not_advice: >
+    This produces an analysis input. It is not investment, financial, legal or
+    procurement advice, and no output should be relied on as such.
+  not_predictive: >
+    This does not predict return on investment. It scores declared
+    organisational conditions against published evidence, and computes cost
+    under an explicit, user-visible cost model.
