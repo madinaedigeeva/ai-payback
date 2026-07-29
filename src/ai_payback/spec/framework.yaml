@@ -11,7 +11,7 @@
 # See docs/METHODOLOGY.md, section "What this is not".
 
 schema_version: "0.1"
-framework_version: "0.1.0"
+framework_version: "0.2.0"
 framework_updated: "2026-07-29"
 
 identity:

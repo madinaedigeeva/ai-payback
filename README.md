@@ -48,7 +48,7 @@ not an oversight.
 
 ## What it does
 
-1. **Scores 60 diagnostic questions** across 20 barriers, grouped into three
+1. **Scores 78 diagnostic questions** across 26 barriers, grouped into three
    layers — algorithms, technology and data, people and processes — weighted
    10 / 20 / 70 after BCG's allocation principle.
 2. **Builds a total cost of ownership** across the categories that published
@@ -93,6 +93,17 @@ be replaced with your own before use in a business case.
 **Payback is refused rather than fabricated.** If you do not supply a net
 monthly benefit, no payback figure is produced. Substituting a benchmark benefit
 would mean inventing the answer to the question being asked.
+
+**A saving nobody converts is not a saving.** If you supply a benefit but no
+conversion path — what specifically changes when it works, who decides it, by
+when — the payback figure is still produced, and it is printed underneath a
+caveat rather than a footnote. The reason is empirical: the U.S. Census Bureau's
+2026 AI supplement finds that **95.7% of AI-using firms record no AI-driven
+employment change at all** over six months
+([CES-WP-26-25](https://www2.census.gov/library/working-papers/2026/adrm/ces/CES-WP-26-25.pdf),
+April 2026, Table 4). That is what an unconverted saving looks like at national
+scale, and it is the most common reason an AI business case that looked sound
+produces nothing. See barrier `PP-14`.
 
 **Every coefficient carries a provenance tier.** Sources are recorded in
 [`sources.yaml`](src/ai_payback/spec/sources.yaml) as `primary`, `published`,

@@ -234,6 +234,9 @@ def to_markdown(
             "Simple payback: total cost of ownership divided by net monthly "
             "benefit. No discounting."
         )
+        for caveat in payback_result.caveats:
+            w("")
+            w(f"> ⚠️ **Read this before using the figure.** {caveat}")
         if payback_result.j_curve_caveat:
             w("")
             w(f"> **J-curve caveat.** {payback_result.j_curve_caveat}")

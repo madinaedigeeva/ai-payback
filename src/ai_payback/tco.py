@@ -210,4 +210,29 @@ def payback(
         refusal_reason=None,
         j_curve_caveat=caveat,
         elapsed_months=assessment.elapsed_months,
+        caveats=_payback_caveats(assessment),
+    )
+
+
+def _payback_caveats(assessment: Assessment) -> tuple[str, ...]:
+    """Conditions under which a computed payback figure is unsafe to rely on.
+
+    Currently one, and it is the most common way an AI business case turns out
+    to be wrong: a benefit that nobody converts into a decision never reaches
+    the accounts. This is barrier PP-14, and it is a caveat rather than a
+    refusal because the user may hold a conversion plan the assessment does not
+    record.
+    """
+    if assessment.has_conversion_path:
+        return ()
+    return (
+        "No conversion path was recorded for this benefit. A time or cost saving "
+        "reaches the accounts only when someone ends a contract, declines to "
+        "backfill a role, reduces overtime, absorbs additional volume without "
+        "hiring, or moves a price or conversion rate. Nationally, 95.7% of "
+        "AI-using firms report no AI-driven employment change at all over six "
+        "months (U.S. Census Bureau, CES-WP-26-25, April 2026, Table 4) - which "
+        "is what an unconverted saving looks like in aggregate. Until the "
+        "conversion is named, owned and dated, treat this figure as a "
+        "theoretical maximum rather than a forecast. See barrier PP-14.",
     )

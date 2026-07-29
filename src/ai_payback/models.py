@@ -151,6 +151,11 @@ class PaybackResult:
 
     A refusal is a first-class result. The library never substitutes a
     benchmark benefit for a benefit the user did not supply.
+
+    `caveats` carries conditions under which the computed figure is unsafe to
+    rely on. A caveat is not a refusal: the figure is still produced, because
+    the user may hold information the assessment does not. It is reported
+    alongside the number rather than beneath it.
     """
 
     computed: bool
@@ -159,6 +164,7 @@ class PaybackResult:
     refusal_reason: str | None = None
     j_curve_caveat: str | None = None
     elapsed_months: int | None = None
+    caveats: tuple[str, ...] = ()
 
 
 @dataclass
@@ -173,6 +179,19 @@ class Assessment:
     net_monthly_benefit: float | None = None
     elapsed_months: int | None = None
     notes: str | None = None
+    benefit_conversion: str | None = None
+    """What specifically changes when the benefit is realised.
+
+    A contract ended, a hire not made, volume absorbed without hiring, a price
+    or conversion rate moved. Left empty, the payback figure is reported with an
+    explicit caveat: nationally, 95.7% of AI-using firms record no employment
+    change at all (CENSUS-BTOS-2026, Table 4), which is what an unconverted
+    saving looks like in aggregate. See barrier PP-14.
+    """
+
+    @property
+    def has_conversion_path(self) -> bool:
+        return bool(self.benefit_conversion and self.benefit_conversion.strip())
 
     def validate_responses(self, valid_question_ids: set[str]) -> list[str]:
         """Return a list of problems. An empty list means the input is usable."""
@@ -207,4 +226,5 @@ class Assessment:
             "net_monthly_benefit": self.net_monthly_benefit,
             "elapsed_months": self.elapsed_months,
             "notes": self.notes,
+            "benefit_conversion": self.benefit_conversion,
         }

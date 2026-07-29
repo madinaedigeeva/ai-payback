@@ -41,6 +41,7 @@ def _load_assessment(path: Path) -> Assessment:
             int(data["elapsed_months"]) if data.get("elapsed_months") is not None else None
         ),
         notes=data.get("notes"),
+        benefit_conversion=data.get("benefit_conversion"),
     )
 
 
@@ -75,6 +76,14 @@ def cmd_template(spec: Spec, _: argparse.Namespace) -> int:
         "# Net benefit per month, in the currency above. Leave empty if unknown —",
         "# no payback figure will be produced, which is the correct outcome.",
         "net_monthly_benefit:",
+        "",
+        "# What specifically changes when the benefit is realised? A contract",
+        "# ended, a hire not made, overtime reduced, volume absorbed without",
+        "# hiring, a price or conversion rate moved — and who decides it, by when.",
+        "# Leave empty if there is no answer yet. The payback figure will still be",
+        "# produced, with a caveat: 95.7% of AI-using firms record no employment",
+        "# change at all, which is what an unconverted saving looks like.",
+        "benefit_conversion:",
         "",
         "responses:",
     ]

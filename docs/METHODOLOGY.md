@@ -129,28 +129,51 @@ never silently compared.
 
 ## 4. The barriers
 
-Twenty barriers, drawn from Yedigeyeva (2026) and corroborated where possible
-against the primary sources that paper cites.
+Twenty-six barriers. Twenty are drawn from Yedigeyeva (2026) and corroborated
+where possible against the primary sources that paper cites. Six were added in
+taxonomy version 0.2.0 after an evidence review against primary sources and two
+independent adversarial reviews — see [`EVIDENCE-REVIEW.md`](EVIDENCE-REVIEW.md).
 
 | Layer | Barriers | Count |
 |---|---|---|
-| People and processes | PP-01 … PP-12 | 12 |
-| Technology and data | TD-01 … TD-05 | 5 |
+| People and processes | PP-01 … PP-17 | 17 |
+| Technology and data | TD-01 … TD-06 | 6 |
 | Algorithms | AL-01 … AL-03 | 3 |
 
 Each barrier carries its evidence source ids, a mapping to SEI capability areas,
 and a mapping to NIST AI RMF subcategories where one exists.
 
+### PP-14, and why it is different from the other twenty-five
+
+Every other barrier describes a condition that makes return *less likely*.
+PP-14 describes the condition under which return is *arithmetically impossible*:
+a saving that no one converts into a decision never reaches the accounts, no
+matter how real it was at the level of the task.
+
+The evidence is the U.S. Census Bureau's 2026 AI supplement. Over six months,
+**95.7% of AI-using firms report no AI-driven employment change at all** — 2.3%
+increased, 2.0% decreased (CES-WP-26-25, April 2026, Table 4). At national scale
+the conversion is essentially never made. This is also the empirical answer to a
+common assumption, that back-office savings are trivially bookable while
+front-office ones are not: they are not being booked either.
+
+PP-14 is therefore the only barrier that changes the *calculation* and not only
+the score. See §6.
+
 ### A result the mapping itself produces
 
-**Seven of the twenty barriers map to no NIST AI RMF subcategory at all:**
-PP-01, PP-02, PP-03, PP-07, PP-08, PP-12 and TD-04.
+**Eight of the twenty-six barriers map to no NIST AI RMF subcategory at all:**
+PP-01, PP-02, PP-03, PP-07, PP-08, PP-12, **PP-14** and TD-04.
 
-Six of the seven sit in the people-and-process layer — the layer BCG's
+Seven of the eight sit in the people-and-process layer — the layer BCG's
 allocation says carries 70% of the work. This is not an omission in the
 mapping; it is a measurement of the gap. The barriers most associated with
 failure to realise return are economic and organisational, and a risk framework
 does not address them because that is not what a risk framework is for.
+
+That PP-14 — the barrier under which return is arithmetically impossible — has
+no counterpart anywhere in the AI RMF's 72 subcategories is the single clearest
+illustration of why an economic companion to those frameworks is worth having.
 
 ## 5. The cost model
 
@@ -190,6 +213,19 @@ Three refusals are built in:
 3. **Programme younger than the horizon** (default 18 months) → figure given,
    J-curve caveat attached, and the programme is never characterised as
    underperforming on cost data alone.
+
+### The conversion caveat
+
+Separately from the refusals, a benefit supplied **without a named conversion
+path** — what changes when it works, who decides it, by when — produces the
+figure together with an explicit caveat, printed above the fold in the report
+and present in the JSON.
+
+It is a caveat and not a refusal, deliberately. The user may hold a conversion
+plan that the assessment file does not record, and refusing to produce a figure
+they are entitled to would be as dishonest as hiding the caveat. What the tool
+will not do is print a payback number as though the question of who converts the
+saving had been settled.
 
 ### The J-curve
 

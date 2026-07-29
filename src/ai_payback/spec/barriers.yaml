@@ -1,7 +1,7 @@
 # AI Payback Assessment barrier taxonomy
 #
-# Twenty barriers to realising return from enterprise AI adoption, organised by
-# the three layers of framework.yaml.
+# Twenty-six barriers to realising return from enterprise AI adoption, organised
+# by the three layers of framework.yaml.
 #
 # Each barrier carries:
 #   layer          which of the three layers it belongs to
@@ -15,8 +15,17 @@
 # is the gap AI Payback Assessment exists to address, and it is recorded honestly as `nist: []`.
 
 schema_version: "0.1"
-taxonomy_version: "0.1.0"
+taxonomy_version: "0.2.0"
 implements: "YEDIGEYEVA-2026"
+
+# Taxonomy changelog
+#   0.2.0  2026-07-30  Added PP-13..PP-17 and TD-06. The six were identified by
+#                      cross-checking the 0.1.0 taxonomy against two independent
+#                      adversarial reviews and against CENSUS-BTOS-2026. PP-14
+#                      is the most consequential: it also changes the payback
+#                      logic, because a saving that no one converts into a
+#                      decision never reaches the accounts.
+#   0.1.0  2026-07-29  Initial twenty barriers, implementing YEDIGEYEVA-2026.
 
 barriers:
 
@@ -309,6 +318,153 @@ barriers:
           Does any end-to-end process cycle time show a change, as opposed to
           individual task times?
 
+  - id: PP-13
+    name: "No pre-deployment baseline"
+    layer: PEOPLE_PROCESS
+    description: >
+      Handle time, error rate, rework and cost per unit were never recorded
+      before the system went in. Improvement cannot be demonstrated even where
+      it occurred, and every later claim about return is an argument rather than
+      a measurement.
+    evidence: [CENSUS-BTOS-2026, SEI-AAMM-1.0]
+    evidence_note: >
+      SEI-AAMM-1.0 directs organisations to "Collect cost and revenue data along
+      with model outputs to support ROI analysis" and requires an ROI analysis
+      artifact at Level 3, but a baseline collected only after deployment cannot
+      support one.
+    sei: ["4.10.3 Monitoring", "4.6.1 Experimentation", "4.4.1 AI Strategy Development"]
+    nist: ["MEASURE 1.1", "MEASURE 2.1"]
+    questions:
+      - id: PP-13-Q1
+        text: >
+          Were the relevant metrics recorded for a defined period BEFORE the
+          system was introduced?
+      - id: PP-13-Q2
+        text: >
+          Is there an untouched comparison group, or a period held back for
+          comparison, rather than only a before-and-after narrative?
+      - id: PP-13-Q3
+        text: >
+          Was the threshold that would count as success written down before
+          deployment rather than after results were seen?
+
+  - id: PP-14
+    name: "No conversion path for the saving"
+    layer: PEOPLE_PROCESS
+    description: >
+      Time is saved and nothing is decided. No contract is cancelled, no
+      overtime reduced, no vacancy left unfilled, no additional volume taken on,
+      no price or conversion changed. The saving is real at the level of the
+      task and absent from the accounts, because converting it requires a
+      management decision that no one owns.
+    evidence: [CENSUS-BTOS-2026, MIT-NANDA-2025, YEDIGEYEVA-2026]
+    evidence_quote: >
+      CENSUS-BTOS-2026 Table 4: over six months, 95.7% of AI-using firms report
+      NO AI-driven employment change (2.3% increased, 2.0% decreased).
+    evidence_note: >
+      This is the single most consequential barrier in the taxonomy and the one
+      most often missing from AI business cases. It is also the empirical
+      answer to the common claim that back-office savings are trivially
+      bookable: at national scale they are not being booked. PP-14 is the only
+      barrier that also affects the payback calculation - see tco.payback().
+    sei: ["4.4.1 AI Strategy Development", "4.6.3 Business Workflow Innovation", "4.11.3 Deployment at Scale"]
+    nist: []
+    questions:
+      - id: PP-14-Q1
+        text: >
+          Is it written down what specifically changes when this works - a
+          contract ended, a hire not made, volume absorbed, a price or
+          conversion rate moved?
+      - id: PP-14-Q2
+        text: >
+          Is there a named person with the authority to make that change, and a
+          date by which they will decide?
+      - id: PP-14-Q3
+        text: >
+          Has a saving from this programme already been converted into a booked
+          change at least once?
+
+  - id: PP-15
+    name: "Verification tax"
+    layer: PEOPLE_PROCESS
+    description: >
+      Output cannot be trusted unreviewed, so every artifact is checked by
+      someone qualified. Where the reviewer is more expensive than the work
+      saved, the net effect on cost is negative - and this bites hardest in the
+      high-stakes work where AI is pitched most confidently.
+    evidence: [BLR-QJE-2025, YEDIGEYEVA-2026]
+    evidence_note: >
+      BLR-QJE-2025 finds the most experienced workers see small gains in speed
+      and small declines in quality, consistent with review burden falling on
+      exactly the people whose time is most expensive.
+    sei: ["4.9.2 Test and Evaluation", "4.6.3 Business Workflow Innovation"]
+    nist: ["MEASURE 2.3", "MANAGE 2.2"]
+    questions:
+      - id: PP-15-Q1
+        text: >
+          Is the time spent reviewing and correcting output measured, rather
+          than assumed to be negligible?
+      - id: PP-15-Q2
+        text: >
+          Is the fully loaded cost of the reviewer included in the cost of the
+          programme?
+      - id: PP-15-Q3
+        text: >
+          Has the level of review been reduced anywhere on the basis of measured
+          reliability, rather than remaining at its initial setting?
+
+  - id: PP-16
+    name: "Shadow AI and tool sprawl"
+    layer: PEOPLE_PROCESS
+    description: >
+      Teams buy their own tools independently. Spend is invisible, evaluation is
+      duplicated, data flows outside review, and nothing consolidates - so the
+      organisation pays many times for overlapping capability and can account
+      for none of it.
+    evidence: [CENSUS-BTOS-2026, MIT-NANDA-2025]
+    evidence_note: >
+      CENSUS-BTOS-2026 finds worker task-level AI use with no corresponding
+      firm-level adoption in 36% of firms where workers use AI - a bottom-up
+      pattern that is invisible to the firm's own accounting.
+    sei: ["4.12.1 Technology Selection", "4.7.2 Data Governance", "4.4.1 AI Strategy Development"]
+    nist: ["GOVERN 1.1", "GOVERN 6.1", "MAP 4.1"]
+    questions:
+      - id: PP-16-Q1
+        text: >
+          Is there a single inventory of AI tools in use, including ones bought
+          on individual expense?
+      - id: PP-16-Q2
+        text: >
+          Is total AI spend across the organisation known to one owner?
+      - id: PP-16-Q3
+        text: >
+          Has overlapping capability been consolidated at least once rather than
+          allowed to accumulate?
+
+  - id: PP-17
+    name: "Simpler alternative never tested"
+    layer: PEOPLE_PROCESS
+    description: >
+      Rules, a template, a corrected form, a scheduled task or a better query
+      would have solved most of the problem more cheaply and more predictably.
+      AI was chosen without that comparison, sometimes because it is the option
+      that signals ambition.
+    evidence: [YEDIGEYEVA-2026, SEI-AAMM-1.0]
+    sei: ["4.6.3 Business Workflow Innovation", "4.12.1 Technology Selection"]
+    nist: ["MAP 1.3", "MAP 2.1"]
+    questions:
+      - id: PP-17-Q1
+        text: >
+          Was a non-AI solution specified and costed before this one was chosen?
+      - id: PP-17-Q2
+        text: >
+          Is the additional value of the AI approach over that alternative
+          stated in numbers?
+      - id: PP-17-Q3
+        text: >
+          Would the business case still hold if the AI component were replaced
+          by deterministic rules?
+
 # =============================================================== TECH AND DATA
 # The 20%.
 
@@ -422,6 +578,35 @@ barriers:
         text: >
           Is groundedness evaluated against a held-out set of real internal
           questions?
+
+  - id: TD-06
+    name: "Vendor incentive misalignment"
+    layer: TECH_DATA
+    description: >
+      Pricing is metered on seats or tokens, so the supplier's revenue rises
+      with consumption rather than with the customer's result. Unlike
+      conventional software, success increases variable cost - and the party
+      best placed to reduce that cost is the party paid for it not falling.
+    evidence: [YEDIGEYEVA-2026, MIT-NANDA-2025]
+    evidence_note: >
+      Related to but distinct from AL-01: AL-01 is about the vendor changing the
+      model underneath you, TD-06 is about the vendor's commercial interest
+      diverging from yours even when nothing changes.
+    sei: ["4.12.2 Vendor and Partner Management", "4.12.1 Technology Selection"]
+    nist: ["GOVERN 6.1", "GOVERN 6.2"]
+    questions:
+      - id: TD-06-Q1
+        text: >
+          Is the unit cost per useful outcome tracked, rather than only the
+          monthly invoice?
+      - id: TD-06-Q2
+        text: >
+          Is there a modelled ceiling for what the programme costs at full
+          intended adoption, not just at current volume?
+      - id: TD-06-Q3
+        text: >
+          Is there a realistic path to another supplier or a smaller model if
+          unit economics deteriorate?
 
 # =================================================================== ALGORITHMS
 # The 10%. Small by design - overweighting this layer is itself a failure mode.

@@ -15,7 +15,7 @@
 # inside the document, not merely that the URL returned 200.
 
 schema_version: "0.1"
-registry_updated: "2026-07-29"
+registry_updated: "2026-07-30"
 
 sources:
 
@@ -67,8 +67,82 @@ sources:
 
   # ------------------------------------------------------------------ evidence
 
-  MIT-NANDA-2025:
+  CENSUS-BTOS-2026:
     tier: primary
+    title: >
+      The Microstructure of AI Diffusion: Evidence from Firms, Business
+      Functions, and Worker Tasks
+    author: >
+      Kathryn Bonney, Cory Breaux, Emin Dinlersoz, Lucia Foster,
+      John Haltiwanger, Aditya Pande
+    publisher: "Center for Economic Studies, U.S. Census Bureau"
+    identifier: "CES Working Paper 26-25"
+    date: "2026-04"
+    url: "https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-25.html"
+    pdf_url: "https://www2.census.gov/library/working-papers/2026/adrm/ces/CES-WP-26-25.pdf"
+    verified_on: "2026-07-30"
+    verified_facts:
+      - "79 pages. Nationally representative; 2026 AI supplement to the Business Trends and Outlook Survey, reference period November 2025 - January 2026."
+      - "18% of firms use AI in a business function; 32% employment-weighted. Expected to reach 22% within six months."
+      - "'Within business functions, Sales and Marketing exhibits the highest functional AI adoption rate at 52% (48% employment-weighted), followed by significant integration in strategy and business development, IT, and R&D.'"
+      - "Employment-weighted the ranking inverts: IT is the most commonly used function, followed by finance and accounting, then sales and marketing."
+      - "Latent class analysis of AI-using firms: Minimalist Adopters 37%, Marketing Specialists 31%, Administrative Integrators 15%, Technical Strategists 12%, Comprehensive Adopters 4%."
+      - "'across almost all industries, AI-using frms are most likely to fall into the minimalist or marketing specialist categories'"
+      - "57% of functional adopters use AI in three or fewer of fifteen functions; 24% in exactly one; about 1% in all fifteen."
+      - "Changes to data management and storage practices occur in only 7-8% of firms. The least common organisational adjustment is hiring staff trained in AI."
+      - "16% of AI-using firms replace equipment and software with AI: 'in the current phase of difusion, AI is serving more frequently as a substitute for legacy capital than for tasks and labor.'"
+      - "Table 4, AI-driven employment change over six months: increased 2.3%, decreased 2.0%, NO CHANGE 95.7% (firm-weighted); 3.7% / 2.4% / 93.9% employment-weighted."
+      - "'broader structural investments and functional integration are likely the primary drivers of long-term productivity takeof, even if they depress measured performance in the short run'"
+    stated_limitations:
+      - "The regressions are linear probability models reporting associations. The authors state that establishing causal links is future work."
+      - "'worker-use measures are reported by frm respondents rather than directly by employees'"
+    note: >
+      The strongest evidence base in this specification: a US government survey
+      with weights reflecting the universe of US firms, rather than a
+      self-selected vendor or consultancy panel. Table 4 is the empirical basis
+      for barrier PP-14 - a time saving that no one converts into a decision
+      does not appear in the accounts.
+
+  BLR-QJE-2025:
+    tier: primary
+    title: "Generative AI at Work"
+    author: "Erik Brynjolfsson, Danielle Li, Lindsey R. Raymond"
+    publication: "The Quarterly Journal of Economics"
+    volume: "140"
+    issue: "2"
+    pages: "889-942"
+    date: "2025-05"
+    url: "https://academic.oup.com/qje/article/140/2/889/7990658"
+    preprint_url: "https://www.nber.org/papers/w31161"
+    verified_on: "2026-07-30"
+    verified_facts:
+      - "5,172 customer-support agents; staggered rollout design supplemented by a randomised controlled trial."
+      - "Access to AI assistance raises issues resolved per hour by 15% on average."
+      - "Gains concentrated among less experienced and lower-skilled workers; the most experienced see small gains in speed and small declines in quality."
+      - "AI assistance improves customer sentiment, increases employee retention, and shows evidence of worker learning."
+    scope_note: >
+      The measured effect is throughput and quality - issues resolved per hour -
+      not customer churn or revenue retention. Citing this paper as evidence
+      that AI "retains unhappy customers" misreads it. Recorded here because the
+      distinction matters and is routinely got wrong.
+    note: >
+      The most rigorous causal evidence of generative AI productivity gains
+      currently available, and it is in customer support. External validity is
+      limited: one large software firm, one task type with an unusually clean
+      outcome metric.
+
+  MIT-NANDA-2025:
+    tier: published
+    tier_note: >
+      DOWNGRADED from primary on 2026-07-30. The quotations below were read and
+      confirmed against the primary PDF on 2026-07-29. On 2026-07-30 the
+      document was no longer retrievable: nanda.media.mit.edu returns HTML
+      rather than a PDF, the mlq.ai mirror returns a 1-page stub, and the
+      Wayback Machine returns HTML. An independent reviewer attempted retrieval
+      separately and reported the same. A 403 or a redirect is not proof a
+      document does not exist, so the quotations are retained with their
+      original verification date - but nothing load-bearing may rest on them
+      until the PDF is recovered.
     title: "The GenAI Divide: State of AI in Business 2025"
     author: "Aditya Challapally, Chris Pease, Ramesh Raskar, Pradyumna Chari"
     publisher: "MIT Project NANDA"
