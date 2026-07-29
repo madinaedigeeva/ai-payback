@@ -48,13 +48,13 @@ Issues = "https://github.com/madinaedigeeva/ai-payback/issues"
 Methodology = "https://github.com/madinaedigeeva/ai-payback/blob/main/docs/METHODOLOGY.md"
 
 [tool.hatch.build.targets.wheel]
+# The specification ships inside the package so that `load_spec()` works
+# identically from a wheel, an editable install and a source checkout.
+# It is plain YAML and stays reviewable and diffable in git.
 packages = ["src/ai_payback"]
 
-[tool.hatch.build.targets.wheel.force-include]
-"spec" = "ai_payback/spec"
-
 [tool.hatch.build.targets.sdist]
-include = ["src", "spec", "tests", "docs", "README.md", "LICENSE", "CITATION.cff"]
+include = ["src", "tests", "docs", "examples", "README.md", "LICENSE", "CITATION.cff"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -131,7 +131,7 @@ def to_markdown(
     w(
         "Weights follow BCG's 10-20-70 allocation. Using an allocation of effort "
         "as a set of scoring weights is this framework's own modelling step and "
-        "is not a finding of BCG's — see `spec/framework.yaml`, "
+        "is not a finding of BCG's — see `src/ai_payback/spec/framework.yaml`, "
         "`weights.derivation`."
     )
     w("")
@@ -252,7 +252,7 @@ def to_markdown(
     w("")
     w(
         "Sources for every coefficient and mapping used above are recorded in "
-        "`spec/sources.yaml`, with a provenance tier for each and an explicit "
+        "`src/ai_payback/spec/sources.yaml`, with a provenance tier for each and an explicit "
         "list of claims that were found unverifiable and therefore excluded."
     )
     w("")

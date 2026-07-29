@@ -95,21 +95,22 @@ monthly benefit, no payback figure is produced. Substituting a benchmark benefit
 would mean inventing the answer to the question being asked.
 
 **Every coefficient carries a provenance tier.** Sources are recorded in
-[`spec/sources.yaml`](spec/sources.yaml) as `primary`, `published`, `analyst` or
-`unverified`, each with the date its content was checked. Claims that could not
-be traced to a reachable primary document are listed in an `unverified` section
-and are **not used anywhere in the framework** — they are published so you can
-see exactly what was excluded and disagree.
+[`sources.yaml`](src/ai_payback/spec/sources.yaml) as `primary`, `published`,
+`analyst` or `unverified`, each with the date its content was checked. Claims
+that could not be traced to a reachable primary document are listed in an
+`unverified` section and are **not used anywhere in the framework** — they are
+published so you can see exactly what was excluded and disagree.
 
 **The most contestable choice is stated, not buried.** BCG states 10-20-70 as an
 allocation of *effort*. Using it as a set of *scoring weights* is this project's
 own inference, not a finding of BCG's. It is documented in
-`spec/framework.yaml` under `weights.derivation`, the weights are configurable,
-and every result carries the weight vector that produced it.
+[`framework.yaml`](src/ai_payback/spec/framework.yaml) under
+`weights.derivation`, the weights are configurable, and every result carries the
+weight vector that produced it.
 
 ## The specification is data, not code
 
-Everything substantive lives in YAML under [`spec/`](spec/):
+Everything substantive lives in YAML under [`src/ai_payback/spec/`](src/ai_payback/spec/):
 
 | File | Contents |
 |---|---|
@@ -165,7 +166,7 @@ resheniya** 11(5), pp. 263–280,
 ## Contributing
 
 The most useful contribution is disagreement with a specific coefficient,
-mapping or question, backed by a source. Open an issue naming the `spec/` line
+mapping or question, backed by a source. Open an issue naming the `src/ai_payback/spec/` line
 and the source you would put in its place.
 
 Contributions of synthetic or simulated assessment data will be declined. A

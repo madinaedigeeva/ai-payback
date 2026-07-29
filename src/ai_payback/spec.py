@@ -1,6 +1,6 @@
 """Loading and validating the framework specification.
 
-The specification lives in YAML under `spec/`, not in Python. A user who
+The specification lives in YAML inside the package, not in Python. A user who
 disagrees with a weight, a barrier or a source can edit the specification and
 re-run without touching code, and can diff two specifications to see exactly
 what changed between two results.
@@ -27,20 +27,14 @@ class SpecError(RuntimeError):
 def default_spec_dir() -> Path:
     """Locate the bundled specification.
 
-    Installed packages carry `spec/` inside the package directory. A source
-    checkout keeps it at the repository root, which is where it belongs for
-    review and diffing.
+    The specification lives inside the package, so this path is the same for a
+    wheel, an editable install and a source checkout. It stays plain YAML, so
+    it remains reviewable and diffable in git.
     """
     packaged = Path(__file__).resolve().parent / _SPEC_DIRNAME
     if packaged.is_dir():
         return packaged
-    repo_root = Path(__file__).resolve().parents[2] / _SPEC_DIRNAME
-    if repo_root.is_dir():
-        return repo_root
-    raise SpecError(
-        "specification directory not found; looked in "
-        f"{packaged} and {repo_root}"
-    )
+    raise SpecError(f"specification directory not found at {packaged}")
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:

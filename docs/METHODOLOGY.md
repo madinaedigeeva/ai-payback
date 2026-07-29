@@ -4,7 +4,7 @@ Version 0.1.0 · 2026-07-29
 
 This document states what the instrument does, what each number rests on, and
 where it can be wrong. It is written to be argued with. Every coefficient,
-mapping and modelling step below can be checked against `spec/sources.yaml`,
+mapping and modelling step below can be checked against `src/ai_payback/spec/sources.yaml`,
 which records a provenance tier and a verification date for each source.
 
 ---
@@ -169,7 +169,7 @@ preset, `yedigeyeva_2026_illustrative`, **off by default**, and every line it
 produces is labelled *illustrative* inline in the report.
 
 The related claim that total AI programme cost is underestimated by 40–60% is
-recorded in `spec/sources.yaml` under `unverified` and **is not implemented
+recorded in `src/ai_payback/spec/sources.yaml` under `unverified` and **is not implemented
 anywhere.**
 
 ## 6. Payback
@@ -202,7 +202,7 @@ a positive one is not by itself evidence of success.
 
 ## 7. Provenance discipline
 
-Every source in `spec/sources.yaml` carries a tier:
+Every source in `src/ai_payback/spec/sources.yaml` carries a tier:
 
 | Tier | Meaning |
 |---|---|
