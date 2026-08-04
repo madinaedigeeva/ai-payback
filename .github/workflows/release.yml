@@ -76,6 +76,15 @@ jobs:
   publish:
     name: Publish to PyPI
     needs: build
+    # Gated on a repository variable rather than attempted unconditionally.
+    # Trusted Publishing needs a pending publisher registered on PyPI first, and
+    # that registration requires a password re-confirmation that only the account
+    # owner can give. Until it exists, this job would fail on every tag and turn a
+    # perfectly good release red for a reason that has nothing to do with the code.
+    # Skipping is the honest signal: the artifact built and verified; only the
+    # upload is not wired up yet.
+    #   gh variable set PYPI_TRUSTED_PUBLISHER_READY --body true
+    if: vars.PYPI_TRUSTED_PUBLISHER_READY == 'true'
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
