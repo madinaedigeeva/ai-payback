@@ -18,10 +18,20 @@ ai-payback run my-assessment.yaml          # get the analysis
 Enterprise AI adoption has a measurement gap, and the gap is documented by the
 same organisations that set the standards.
 
-**MIT Project NANDA**, in *The GenAI Divide: State of AI in Business 2025*,
-reports that despite $30–40 billion of enterprise investment, "95% of
-organizations are getting zero return," and that the cause is organisational
-rather than technical.
+**The U.S. Census Bureau's 2026 AI supplement** — nationally representative,
+covering the universe of US firms — finds that **95.7% of AI-using firms record
+no AI-driven employment change of any kind** over six months, and that only
+**7–8%** made the complementary investment in data management and storage that
+would let an AI deployment change anything operationally
+([CES-WP-26-25](https://www2.census.gov/library/working-papers/2026/adrm/ces/CES-WP-26-25.pdf),
+April 2026, Tables 3–4). Adoption is broad; conversion into anything that
+reaches the accounts is rare.
+
+*(Widely quoted consultancy figures — "95% of organizations are getting zero
+return" and similar — point the same way, but are self-reported, non-probability
+and in at least one case no longer retrievable at the publisher's own URL. They
+are recorded in [`sources.yaml`](src/ai_payback/spec/sources.yaml) with their
+provenance tier and are not load-bearing here.)*
 
 **NIST's AI Risk Management Framework** (AI RMF 1.0) has 72 subcategories across
 four functions. A full-text search of the published framework returns **zero**
@@ -64,7 +74,7 @@ not an oversight.
 - **Not a predictive model.** It does not forecast return. It scores conditions
   that published research associates with failure to realise return.
 - **Not a benchmark of your organisation against others.** There is no
-  comparison dataset in v0.1. When there is one, it will be built from real
+  comparison dataset yet. When there is one, it will be built from real
   submitted assessments, never from synthetic data.
 - **Not advice.** It produces an input to a decision, not the decision.
 - **Not affiliated** with NIST, CMU SEI, Accenture, MIT, Project NANDA or BCG.
@@ -126,7 +136,7 @@ Everything substantive lives in YAML under [`src/ai_payback/spec/`](src/ai_payba
 | File | Contents |
 |---|---|
 | `framework.yaml` | Layers, weights and their derivation, response scale, score bands, J-curve caveat |
-| `barriers.yaml` | 20 barriers, 60 questions, mapped to SEI capability areas and NIST AI RMF subcategories |
+| `barriers.yaml` | 26 barriers, 78 questions, mapped to SEI capability areas and NIST AI RMF subcategories |
 | `cost_model.yaml` | Direct and omitted cost categories, presets, payback rules |
 | `sources.yaml` | Every source with a provenance tier and verification date, plus the excluded pool |
 
