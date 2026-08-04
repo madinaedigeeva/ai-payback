@@ -1,5 +1,9 @@
 # AI Payback Assessment
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21787321.svg)](https://doi.org/10.5281/zenodo.21787321)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
+
 An open instrument for assessing whether an enterprise AI adoption programme is
 positioned to pay back — and for producing the ROI analysis document that AI
 adoption maturity frameworks ask organisations to hold, but do not define how to
